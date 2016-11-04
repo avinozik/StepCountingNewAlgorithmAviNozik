@@ -41,18 +41,17 @@ public class CountStepsBlank {
 
         if (accData[i] > threshold) {
           stepCount++;
-        } else {
+        } else {// new algorithm
 
-          double percentOfCloseness = (accData[i]) / (threshold);
-          percentOfCloseness = percentOfCloseness * 100;
-
-          if (100 - percentOfCloseness <= 1) {
+          double percentOfCloseness = (accData[i]) / (threshold);// how close it
+                                                                 // is to the
+                                                                 // threshold
+          percentOfCloseness = percentOfCloseness * 100;// make it a percent
+          if (100 - percentOfCloseness <= 1) {// is it close enough
             stepCount++;
-            threshold = threshold - (100 - percentOfCloseness);
+            threshold = threshold - (100 - percentOfCloseness);// adjust the
+                                                               // threshold
           }
-
-          // if accData[i] is below but close to threshold
-          // step++
         }
       }
     }
