@@ -4,6 +4,9 @@ import org.math.plot.Plot2DPanel;
 
 public class CountStepsBlank {
 
+  public static final double COMPLETELY_IDENTICAL = 100;
+  public static final double HUNDRED_PERCENT = 100;
+
   /***
    * Counts the number of steps based on sensor data.
    *
@@ -37,8 +40,9 @@ public class CountStepsBlank {
 
     for (int i = 1; i < accData.length - 1; i++) {
       if (accData[i] > accData[i - 1] && accData[i] > accData[i + 1]) {
-        double threshold = accStandardDev + 14;
-
+        double threshold = accStandardDev + mean;
+        System.out.println("standard dev: " + accStandardDev + " mean: " + mean
+            + " threshold: " + threshold);
         if (accData[i] > threshold) {
           stepCount++;
         } else {// new algorithm
@@ -46,11 +50,14 @@ public class CountStepsBlank {
           double percentOfCloseness = (accData[i]) / (threshold);// how close it
                                                                  // is to the
                                                                  // threshold
-          percentOfCloseness = percentOfCloseness * 100;// make it a percent
-          if (100 - percentOfCloseness <= 1) {// is it close enough
+          percentOfCloseness = percentOfCloseness * HUNDRED_PERCENT;// make it a
+                                                                    // percent
+          if (COMPLETELY_IDENTICAL - percentOfCloseness <= 5.9) {// is it close
+            // enough
             stepCount++;
-            threshold = threshold - (100 - percentOfCloseness);// adjust the
-                                                               // threshold
+            threshold = threshold - (HUNDRED_PERCENT - percentOfCloseness);// adjust
+                                                                           // the
+            // threshold
           }
         }
       }
