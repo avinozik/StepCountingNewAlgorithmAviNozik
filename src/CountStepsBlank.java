@@ -6,12 +6,13 @@ public class CountStepsBlank {
 
   public static final double COMPLETELY_IDENTICAL = 100;
   public static final double HUNDRED_PERCENT = 100;
+  public static final double CLOSENESS_THRESHOLD = 6.5;
 
   /***
    * Counts the number of steps based on sensor data.
    *
    * @param times
-   *          a 1d-array with the elapsed times in miliseconds for each row in
+   *          a 1d-array with the elapsed times in milliseconds for each row in
    *          the sensorData array.
    *
    * @param sensorData
@@ -50,14 +51,12 @@ public class CountStepsBlank {
           double percentOfCloseness = (accData[i]) / (threshold);// how close it
                                                                  // is to the
                                                                  // threshold
-          percentOfCloseness = percentOfCloseness * HUNDRED_PERCENT;// make it a
-                                                                    // percent
-          if (COMPLETELY_IDENTICAL - percentOfCloseness <= 5.9) {// is it close
-            // enough
+          percentOfCloseness = percentOfCloseness * HUNDRED_PERCENT;
+          if (COMPLETELY_IDENTICAL
+              - percentOfCloseness <= CLOSENESS_THRESHOLD) {
             stepCount++;
-            threshold = threshold - (HUNDRED_PERCENT - percentOfCloseness);// adjust
-                                                                           // the
-            // threshold
+            threshold = threshold - (HUNDRED_PERCENT - percentOfCloseness);
+            // adjust the threshold^^
           }
         }
       }
