@@ -6,9 +6,9 @@ public class CountStepsBlank {
 
   public static final double COMPLETELY_IDENTICAL = 100;
   public static final double HUNDRED_PERCENT = 100;
-  public static final double CLOSENESS_THRESHOLD = 5;// has to be low for
-  public static final double AVIS_CONSTANT = 0.2;// threshold raise, fewer
-                                                 // steps
+  public static final double CLOSENESS_THRESHOLD = 1.5;// has to be low for
+  public static final double AVIS_CONSTANT = 0.25;// threshold raise, fewer
+  // steps
   // custom test data
 
   /***
