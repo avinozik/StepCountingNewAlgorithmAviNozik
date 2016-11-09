@@ -6,7 +6,10 @@ public class CountStepsBlank {
 
   public static final double COMPLETELY_IDENTICAL = 100;
   public static final double HUNDRED_PERCENT = 100;
-  public static final double CLOSENESS_THRESHOLD = 6.5;
+  public static final double CLOSENESS_THRESHOLD = 5;// has to be low for
+  public static final double AVIS_CONSTANT = 0.2;// threshold raise, fewer
+                                                 // steps
+  // custom test data
 
   /***
    * Counts the number of steps based on sensor data.
@@ -41,23 +44,25 @@ public class CountStepsBlank {
 
     for (int i = 1; i < accData.length - 1; i++) {
       if (accData[i] > accData[i - 1] && accData[i] > accData[i + 1]) {
-        double threshold = accStandardDev + mean;
+        double threshold = accStandardDev + mean + AVIS_CONSTANT;
         System.out.println("standard dev: " + accStandardDev + " mean: " + mean
             + " threshold: " + threshold);
         if (accData[i] > threshold) {
           stepCount++;
-        } else {// new algorithm
+        } else {
 
-          double percentOfCloseness = (accData[i]) / (threshold);// how close it
-                                                                 // is to the
-                                                                 // threshold
+          // begin new algorithm
+
+          double percentOfCloseness = (accData[i]) / (threshold);
           percentOfCloseness = percentOfCloseness * HUNDRED_PERCENT;
           if (COMPLETELY_IDENTICAL
               - percentOfCloseness <= CLOSENESS_THRESHOLD) {
             stepCount++;
             threshold = threshold - (HUNDRED_PERCENT - percentOfCloseness);
-            // adjust the threshold^^
           }
+
+          // end new algorithm
+
         }
       }
     }
