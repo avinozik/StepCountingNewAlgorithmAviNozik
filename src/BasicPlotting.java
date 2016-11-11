@@ -4,7 +4,7 @@ import org.math.plot.Plot2DPanel;
 
 public class BasicPlotting {
   public static double[][] sampleData;
-  public static String datafile = "E:/SensorDataExplorer/data/64StepsInHandJogging-out.csv";
+  public static String datafile = "D:/SensorDataExplorer/data/Fast_Walking.csv";
 
   public static void main(String[] args) {
     // Create data set

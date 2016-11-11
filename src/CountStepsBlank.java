@@ -6,10 +6,9 @@ public class CountStepsBlank {
 
   public static final double COMPLETELY_IDENTICAL = 100;
   public static final double HUNDRED_PERCENT = 100;
-  public static final double CLOSENESS_THRESHOLD = 1.5;// has to be low for
-  public static final double AVIS_CONSTANT = 0.25;// threshold raise, fewer
-  // steps
-  // custom test data
+  public static final double CLOSENESS_THRESHOLD = 2.00;// has to be low for
+  public static final double AVIS_CONSTANT = 0.20;
+  // AVIS_CONSTANT raises threshold in attempt to solve fundamental overcounting
 
   /***
    * Counts the number of steps based on sensor data.
