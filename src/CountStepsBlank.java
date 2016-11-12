@@ -7,13 +7,13 @@ public class CountStepsBlank {
   public static final double COMPLETELY_IDENTICAL = 100;
   public static final double HUNDRED_PERCENT = 100;
   public static final double CLOSENESS_THRESHOLD = 2.00;// has to be low for
-  public static final double AVIS_CONSTANT = 0.20;
-  // AVIS_CONSTANT raises threshold in attempt to solve fundamental overcounting
+  public static final double THRESH_RAISE_VAL = 0.20;
+  // THRESH_RAISE_VAL raises threshold in attempt to solve overcounting
 
   /***
    * Counts the number of steps based on sensor data.
    *
-   * @param times
+   * @param timess
    *          a 1d-array with the elapsed times in milliseconds for each row in
    *          the sensorData array.
    *
@@ -43,7 +43,7 @@ public class CountStepsBlank {
 
     for (int i = 1; i < accData.length - 1; i++) {
       if (accData[i] > accData[i - 1] && accData[i] > accData[i + 1]) {
-        double threshold = accStandardDev + mean + AVIS_CONSTANT;
+        double threshold = accStandardDev + mean + THRESH_RAISE_VAL;
         System.out.println("standard dev: " + accStandardDev + " mean: " + mean
             + " threshold: " + threshold);
         if (accData[i] > threshold) {
